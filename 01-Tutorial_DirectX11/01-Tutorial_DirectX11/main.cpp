@@ -2,7 +2,7 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline, int iCmdshow)
 {
-	SystemClass* System; 
+	SystemClass* System;
 	bool result; 
 	
 	// system 객체를 생성한다. 
@@ -21,6 +21,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline,
 	
 	// system객체를 종료하고 메모리를 반환한다. 
 	System->Shutdown(); 
-	delete System; System = 0;
+	delete System; 
+	System = 0;
+
 	return 0; 
 }

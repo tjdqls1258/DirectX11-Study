@@ -3,8 +3,9 @@
 #define WIN32_LEAN_AND_MEAN
 
 #include <windows.h>
-class InputClass;
-class GraphicsClass;
+
+#include "inputclass.h" 
+#include "graphicsclass.h"
 
 class SystemClass
 {

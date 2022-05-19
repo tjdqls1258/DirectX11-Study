@@ -1,0 +1,2 @@
+﻿MSVCRT.lib(exe_main.obj) : error LNK2001: 확인할 수 없는 외부 기호 main
+C:\Users\tjdql\Desktop\study\다이렉트X\DirectX11-Study\01-Tutorial_DirectX11\x64\Release\01-Tutorial_DirectX11.exe : fatal error LNK1120: 1개의 확인할 수 없는 외부 참조입니다.
