@@ -21,7 +21,7 @@ bool SystemClass::Initalize()
 
 	screenHeight = 0, screenWidth = 0;
 
-	InitalizeWindows(screenWidth, screenHeight);
+	InitalizeWindows(screenWidth, screenHeight); //윈도우 창 초기화
 
 	m_Input = new InputClass;
 	if (!m_Input)
@@ -29,14 +29,16 @@ bool SystemClass::Initalize()
 		return false;
 	}
 
+	//Input 클래스 초기화 
 	m_Input->Initialize();
 
+	
 	m_Graphics = new GraphicsClass;
 	if (!m_Graphics)
 	{
 		return false;
 	}
-
+	//그래픽 클래스 초기화
 	result = m_Graphics->Initialize(screenWidth, screenHeight, m_hwnd);
 	if (!result)
 	{
@@ -83,7 +85,7 @@ void SystemClass::Run() {
 			TranslateMessage(&msg);
 			DispatchMessage(&msg); 
 		} 
-		// 윈도우에서 어플리케이션의 종료를 요청하는 경우 빠져나갑니다. 
+		// 윈도우에서 어플리케이션의 종료를 요청하는 경우 빠져나갑니다.
 		if(msg.message == WM_QUIT) 
 		{
 			done = true; 
@@ -154,7 +156,7 @@ void SystemClass::InitalizeWindows(int& screenWidth, int& screenHeight)
 
 	m_hinstance = GetModuleHandle(NULL);
 
-	m_applicationName = L"Engine";
+	m_applicationName = L"다이렉트 X 튜토리얼";
 
 	wc.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
 	wc.lpfnWndProc = WndProc;
