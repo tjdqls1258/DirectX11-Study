@@ -18,25 +18,31 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="GraphicsClass.cpp">
+    <ClCompile Include="Cpp\Cameraclass.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="InputClass.cpp">
+    <ClCompile Include="Cpp\Colorshaderclass.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="systemclass.cpp">
+    <ClCompile Include="Cpp\D3dclass.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="D3dclass.cpp">
+    <ClCompile Include="Cpp\GraphicsClass.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Modelclass.cpp">
+    <ClCompile Include="Cpp\InputClass.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Colorshaderclass.cpp">
+    <ClCompile Include="Cpp\Modelclass.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Cameraclass.cpp">
+    <ClCompile Include="Cpp\systemclass.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Cpp\Textureclass.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Cpp\TextureShaderClass.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,12 +68,24 @@
     <ClInclude Include="Cameraclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Textureclass.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureShaderClass.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="color.vs">
       <Filter>리소스 파일</Filter>
     </None>
     <None Include="Color.ps">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="texture.vs">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="texture.ps">
       <Filter>리소스 파일</Filter>
     </None>
   </ItemGroup>
