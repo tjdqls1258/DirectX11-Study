@@ -5,6 +5,8 @@
 #include "cameraclass.h"
 #include "modelclass.h"
 #include "TextureShaderClass.h"
+#include "lightshaderclass.h"
+#include "Lightclass.h"
 
 const bool FULL_SCREEN = false;
 const bool VSYNC_ENABLED = true; 
@@ -18,6 +20,8 @@ private:
 	CameraClass* m_Camera;
 	ModelClass* m_Model;
 	TextureShaderClass* m_TextureShader;
+	LightShaderClass* m_LightShader;
+	LightClass* m_Light;
 
 public: 
 	GraphicsClass();
@@ -30,7 +34,7 @@ public:
 	void Shutdown(); 
 
 private:
-	bool Render();
+	bool Render(float);
 };
 
 #endif // !_GRAPHICSCLASS_H_

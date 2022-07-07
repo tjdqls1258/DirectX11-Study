@@ -45,47 +45,65 @@
     <ClCompile Include="Cpp\TextureShaderClass.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Cpp\lightshaderclass.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Cpp\Lightclass.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GraphicsClass.h">
+    <ClInclude Include="header\Cameraclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="InputClass.h">
+    <ClInclude Include="header\Colorshaderclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="systemclass.h">
+    <ClInclude Include="header\D3dclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="D3dclass.h">
+    <ClInclude Include="header\GraphicsClass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Modelclass.h">
+    <ClInclude Include="header\InputClass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Colorshaderclass.h">
+    <ClInclude Include="header\lightshaderclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Cameraclass.h">
+    <ClInclude Include="header\Modelclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Textureclass.h">
+    <ClInclude Include="header\systemclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="TextureShaderClass.h">
+    <ClInclude Include="header\Textureclass.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="header\TextureShaderClass.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Lightclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="color.vs">
+    <None Include="Shader\Color.ps">
       <Filter>리소스 파일</Filter>
     </None>
-    <None Include="Color.ps">
+    <None Include="Shader\color.vs">
       <Filter>리소스 파일</Filter>
     </None>
-    <None Include="texture.vs">
+    <None Include="Shader\light.ps">
       <Filter>리소스 파일</Filter>
     </None>
-    <None Include="texture.ps">
+    <None Include="Shader\light.vs">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="Shader\texture.ps">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="Shader\texture.vs">
       <Filter>리소스 파일</Filter>
     </None>
   </ItemGroup>

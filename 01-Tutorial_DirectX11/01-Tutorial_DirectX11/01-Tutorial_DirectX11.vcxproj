@@ -158,6 +158,8 @@
     <ClCompile Include="Cpp\D3dclass.cpp" />
     <ClCompile Include="Cpp\GraphicsClass.cpp" />
     <ClCompile Include="Cpp\InputClass.cpp" />
+    <ClCompile Include="Cpp\Lightclass.cpp" />
+    <ClCompile Include="Cpp\lightshaderclass.cpp" />
     <ClCompile Include="Cpp\Modelclass.cpp" />
     <ClCompile Include="Cpp\systemclass.cpp" />
     <ClCompile Include="Cpp\Textureclass.cpp" />
@@ -165,21 +167,25 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cameraclass.h" />
-    <ClInclude Include="Colorshaderclass.h" />
-    <ClInclude Include="D3dclass.h" />
-    <ClInclude Include="GraphicsClass.h" />
-    <ClInclude Include="InputClass.h" />
-    <ClInclude Include="Modelclass.h" />
-    <ClInclude Include="systemclass.h" />
-    <ClInclude Include="Textureclass.h" />
-    <ClInclude Include="TextureShaderClass.h" />
+    <ClInclude Include="header\Cameraclass.h" />
+    <ClInclude Include="header\Colorshaderclass.h" />
+    <ClInclude Include="header\D3dclass.h" />
+    <ClInclude Include="header\GraphicsClass.h" />
+    <ClInclude Include="header\InputClass.h" />
+    <ClInclude Include="header\lightshaderclass.h" />
+    <ClInclude Include="header\Modelclass.h" />
+    <ClInclude Include="header\systemclass.h" />
+    <ClInclude Include="header\Textureclass.h" />
+    <ClInclude Include="header\TextureShaderClass.h" />
+    <ClInclude Include="Lightclass.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Color.ps" />
-    <None Include="color.vs" />
-    <None Include="texture.ps" />
-    <None Include="texture.vs" />
+    <None Include="Shader\Color.ps" />
+    <None Include="Shader\color.vs" />
+    <None Include="Shader\light.ps" />
+    <None Include="Shader\light.vs" />
+    <None Include="Shader\texture.ps" />
+    <None Include="Shader\texture.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
