@@ -5,6 +5,7 @@ ModelClass::ModelClass()
 	m_vertexBuffer = 0;
 	m_indexBuffer = 0;
 	m_Texture = 0;
+	m_model = 0;
 }
 
 
@@ -17,11 +18,16 @@ ModelClass::~ModelClass()
 {
 }
 
-bool ModelClass::Initialize(ID3D11Device* device, WCHAR* textureFilename)
+bool ModelClass::Initialize(ID3D11Device* device,char* modelFileName, WCHAR* textureFilename)
 {
 	bool result;
 
-
+	//모델 로드
+	result = LoadModel(modelFileName);
+	if (!result)
+	{
+		return false;
+	}
 	// 정점 버퍼와 인덱스 버퍼를 초기화합니다.
 	result = InitializeBuffers(device);
 	if (!result)
@@ -44,6 +50,8 @@ void ModelClass::Shutdown()
 	ReleaseTexture();
 	// 정점 버퍼와 인덱스 버퍼를 해제합니다.
 	ShutdownBuffers();
+	//모델 버퍼 해제
+	ReleaseModel();
 
 	return;
 }
@@ -73,11 +81,7 @@ bool ModelClass::InitializeBuffers(ID3D11Device* device)
 	D3D11_BUFFER_DESC vertexBufferDesc, indexBufferDesc;
 	D3D11_SUBRESOURCE_DATA vertexData, indexData;
 	HRESULT result;
-	// 정점 배열의 길이를 설정합니다.
-	m_vertexCount = 3;
-
-	// 인덱스 배열의 길이를 설정합니다.
-	m_indexCount = 3;
+	int i;
 
 	// 정점 배열을 생성합니다.
 	vertices = new VertexType[m_vertexCount];
@@ -93,22 +97,15 @@ bool ModelClass::InitializeBuffers(ID3D11Device* device)
 		return false;
 	}
 	// 정점 배열에 값을 넣습니다. (위치, UV, 법선)
-	vertices[0].position = D3DXVECTOR3(-1.0f, -1.0f, 0.0f);  // 왼쪽 아래
-	vertices[0].texture = D3DXVECTOR2(0.0f, 1.0f);
-	vertices[0].normal = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
+	for (i = 0; i < m_vertexCount; i++)
+	{
+		vertices[i].position = D3DXVECTOR3(m_model[i].x, m_model[i].y, m_model[i].z);
+		vertices[i].texture = D3DXVECTOR2(m_model[i].tu, m_model[i].tv);
+		vertices[i].normal = D3DXVECTOR3(m_model[i].nx, m_model[i].ny, m_model[i].nz);
+		// 인덱스 배열에 값을 넣습니다.
+		indices[i] = i;
+	}
 
-	vertices[1].position = D3DXVECTOR3(0.0f, 1.0f, 0.0f);  // 상단 가운데
-	vertices[1].texture = D3DXVECTOR2(0.5f, 0.0f);
-	vertices[1].normal = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
-
-	vertices[2].position = D3DXVECTOR3(1.0f, -1.0f, 0.0f);  // 오른쪽 아래
-	vertices[2].texture = D3DXVECTOR2(1.0f, 1.0f);
-	vertices[2].normal = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
-
-	// 인덱스 배열에 값을 넣습니다.
-	indices[0] = 0;  // 왼쪽 아래 Bottom left.
-	indices[1] = 1;  // 상단 가운데
-	indices[2] = 2;  // 오른쪽 아래
 	// 정점 버퍼의 description을 작성합니다.
 	vertexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
 	vertexBufferDesc.ByteWidth = sizeof(VertexType) * m_vertexCount;
@@ -139,6 +136,8 @@ bool ModelClass::InitializeBuffers(ID3D11Device* device)
 
 	// 인덱스 데이터를 가리키는 보조 리소스 구조체를 작성합니다.
 	indexData.pSysMem = indices;
+	indexData.SysMemPitch = 0;
+	indexData.SysMemSlicePitch = 0;
 
 	// 인덱스 버퍼를 생성합니다.
 	result = device->CreateBuffer(&indexBufferDesc, &indexData, &m_indexBuffer);
@@ -228,6 +227,76 @@ void ModelClass::ReleaseTexture()
 		m_Texture->Shutdown();
 		delete m_Texture;
 		m_Texture = 0;
+	}
+
+	return;
+}
+
+bool ModelClass::LoadModel(char* filename)
+{
+	std::ifstream fin;
+	char input;
+	int i;
+
+
+	// Open the model file.
+	fin.open(filename);
+
+	// If it could not open the file then exit.
+	if (fin.fail())
+	{
+		return false;
+	}
+
+	// Read up to the value of vertex count.
+	fin.get(input);
+	while (input != ':')
+	{
+		fin.get(input);
+	}
+
+	// Read in the vertex count.
+	fin >> m_vertexCount;
+
+	// Set the number of indices to be the same as the vertex count.
+	m_indexCount = m_vertexCount;
+
+	// Create the model using the vertex count that was read in.
+	m_model = new ModelType[m_vertexCount];
+	if (!m_model)
+	{
+		return false;
+	}
+
+	// Read up to the beginning of the data.
+	fin.get(input);
+	while (input != ':')
+	{
+		fin.get(input);
+	}
+	fin.get(input);
+	fin.get(input);
+
+	// Read in the vertex data.
+	for (i = 0; i < m_vertexCount; i++)
+	{
+		fin >> m_model[i].x >> m_model[i].y >> m_model[i].z;
+		fin >> m_model[i].tu >> m_model[i].tv;
+		fin >> m_model[i].nx >> m_model[i].ny >> m_model[i].nz;
+	}
+
+	// Close the model file.
+	fin.close();
+
+	return true;
+}
+
+void ModelClass::ReleaseModel()
+{
+	if (m_model)
+	{
+		delete[] m_model;
+		m_model = 0;
 	}
 
 	return;
