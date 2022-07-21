@@ -83,7 +83,7 @@
     <ClInclude Include="header\TextureShaderClass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Lightclass.h">
+    <ClInclude Include="header\Lightclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

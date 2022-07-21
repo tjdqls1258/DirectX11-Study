@@ -172,12 +172,12 @@
     <ClInclude Include="header\D3dclass.h" />
     <ClInclude Include="header\GraphicsClass.h" />
     <ClInclude Include="header\InputClass.h" />
+    <ClInclude Include="header\Lightclass.h" />
     <ClInclude Include="header\lightshaderclass.h" />
     <ClInclude Include="header\Modelclass.h" />
     <ClInclude Include="header\systemclass.h" />
     <ClInclude Include="header\Textureclass.h" />
     <ClInclude Include="header\TextureShaderClass.h" />
-    <ClInclude Include="Lightclass.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\Color.ps" />

@@ -23,21 +23,20 @@ PixelInputType LightVertexShader(VertexInputType input)
 {
     PixelInputType output;
     
-
-    // Change the position vector to be 4 units for proper matrix calculations.
     input.position.w = 1.0f;
 
-    // Calculate the position of the vertex against the world, view, and projection matrices.
+    // 월드, 뷰 및 투영 행렬에 대한 정점 위치 계산
     output.position = mul(input.position, worldMatrix);
     output.position = mul(output.position, viewMatrix);
     output.position = mul(output.position, projectionMatrix);
     
-    // Store the texture coordinates for the pixel shader.
+    // 텍스처 좌표 저장
     output.tex = input.tex;
-        // Calculate the normal vector against the world matrix only.
+
+    //월드 좌표에 대한 법선 벡터 계산
     output.normal = mul(input.normal, (float3x3)worldMatrix);
 	
-    // Normalize the normal vector.
+    // 정규화
     output.normal = normalize(output.normal);
 
     return output;

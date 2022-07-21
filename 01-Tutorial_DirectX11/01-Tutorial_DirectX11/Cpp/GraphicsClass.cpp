@@ -35,24 +35,24 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
-	// Create the camera object.
+	// 카메라 생성
 	m_Camera = new CameraClass;
 	if (!m_Camera)
 	{
 		return false;
 	}
 
-	// Set the initial position of the camera.
+	// 위치설정
 	m_Camera->SetPosition(0.0f, 0.0f, -10.0f);
 
-	// Create the model object.
+	//모델 생성
 	m_Model = new ModelClass;
 	if (!m_Model)
 	{
 		return false;
 	}
 
-	// Initialize the model object.
+	//모델 설정
 	result = m_Model->Initialize(m_D3D->GetDevice(),"../01-Tutorial_DirectX11/Data/Cube.txt",L"../01-Tutorial_DirectX11/Data/05Week.dds");
 	if (!result)
 	{
@@ -97,7 +97,9 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 	//조명 설정(생상 및 방향)
-	m_Light->SetDiffuseColor(1.0f, 1.0f, 1.0f, 1.0f);
+	m_Light->SetAmbientColor(0.15f, 0.15f, 0.15f, 1.0f);
+	//m_Light->SetAmbientColor(0.0f, 0.0f, 0.0f, 1.0f);
+	m_Light->SetDiffuseColor(0.1f, 0.1f, 0.1f, 1.0f);
 	m_Light->SetDirection(0.0f, 0.0f, 1.0f);
 
 	return true;
@@ -193,15 +195,14 @@ bool GraphicsClass::Render(float rotation)
 	m_D3D->GetProjectionMatrix(projectionMatrix);
 	m_D3D->GetWorldMatrix(worldMatrix);
 
-	// Rotate the world matrix by the rotation value so that the triangle will spin.
-	D3DXMatrixRotationYawPitchRoll(&worldMatrix, rotation, 0.0f, rotation);
+	D3DXMatrixRotationYawPitchRoll(&worldMatrix, rotation, 0.0f, 0.0f);
 
 	// Put the model vertex and index buffers on the graphics pipeline to prepare them for drawing.
 	m_Model->Render(m_D3D->GetDeviceContext());
 
 	// Render the model using the color shader.
 	result = result = m_LightShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
-		m_Model->GetTexture(), m_Light->GetDirection(), m_Light->GetDiffuseColor());
+		m_Model->GetTexture(), m_Light->GetDirection(), m_Light->GetAmbientColor() ,m_Light->GetDiffuseColor());
 
 	if (!result)
 	{
