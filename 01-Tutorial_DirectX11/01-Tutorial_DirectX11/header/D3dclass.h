@@ -7,9 +7,9 @@
 #pragma comment(lib, "d3dx10.lib")
 
 #include <dxgi.h> 
-#include <d3dcommon.h>	//커맨드
+#include <d3dcommon.h>
 #include <d3d11.h>		
-#include <d3dx10math.h> //수학 관련?
+#include <d3dx10math.h>
 
 class D3DClass
 {
@@ -28,6 +28,7 @@ private:
 	D3DXMATRIX m_projectionMatrix; 
 	D3DXMATRIX m_worldMatrix; 
 	D3DXMATRIX m_orthoMatrix;
+	ID3D11DepthStencilState* m_depthDisabledStencilState;
 
 public:
 	D3DClass();
@@ -48,6 +49,8 @@ public:
 	void GetOrthoMatrix(D3DXMATRIX&);
 
 	void GetVideoCardInfo(char*, int&);
+	void TurnZBufferOn();
+	void TurnZBufferOff();
 };
 
 #endif // !_D3DCLASS_H_
