@@ -56,8 +56,8 @@ C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(56
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d10.h(609,1): warning C4005: 'D3D10_ERROR_FILE_NOT_FOUND': 매크로 재정의
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(56288): message : 'D3D10_ERROR_FILE_NOT_FOUND'의 이전 정의를 참조하십시오.
   코드를 생성하고 있습니다.
-  3 of 246 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
+  15 of 290 functions ( 5.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    11 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   01-Tutorial_DirectX11.vcxproj -> C:\Users\tjdql\Desktop\study\다이렉트X\DirectX11-Study\01-Tutorial_DirectX11\Release\01-Tutorial_DirectX11.exe

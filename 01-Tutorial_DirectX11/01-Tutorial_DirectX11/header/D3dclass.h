@@ -29,6 +29,8 @@ private:
 	D3DXMATRIX m_worldMatrix; 
 	D3DXMATRIX m_orthoMatrix;
 	ID3D11DepthStencilState* m_depthDisabledStencilState;
+	ID3D11BlendState* m_alphaEnableBlendingState;
+	ID3D11BlendState* m_alphaDisableBlendingState;
 
 public:
 	D3DClass();
@@ -51,6 +53,8 @@ public:
 	void GetVideoCardInfo(char*, int&);
 	void TurnZBufferOn();
 	void TurnZBufferOff();
+	void TurnOnAlphaBlending();
+	void TurnOffAlphaBlending();
 };
 
 #endif // !_D3DCLASS_H_

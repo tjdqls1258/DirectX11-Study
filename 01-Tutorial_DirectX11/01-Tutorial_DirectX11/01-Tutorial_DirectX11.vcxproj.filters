@@ -54,6 +54,15 @@
     <ClCompile Include="Cpp\Bitmapclass.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Cpp\Fontclass.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Cpp\Fontshaderclass.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Cpp\Textclass.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Cameraclass.h">
@@ -92,6 +101,15 @@
     <ClInclude Include="header\Bitmapclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="header\Fontclass.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Textclass.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Fontshaderclass.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\Color.ps">
@@ -110,6 +128,12 @@
       <Filter>리소스 파일</Filter>
     </None>
     <None Include="Shader\texture.vs">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="Shader\Font.ps">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="Shader\Font.vs">
       <Filter>리소스 파일</Filter>
     </None>
   </ItemGroup>

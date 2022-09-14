@@ -9,6 +9,7 @@ GraphicsClass::GraphicsClass()
 	m_LightShader = 0;
 	m_Light = 0;
 	m_Bitmap = 0;
+	m_Text = 0;
 }
 
 GraphicsClass::GraphicsClass(const GraphicsClass& other) 
@@ -22,6 +23,7 @@ GraphicsClass::~GraphicsClass()
 bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd) 
 {
 	bool result; 
+	D3DXMATRIX baseViewMatrix;
 
 	m_D3D = new D3DClass;
 	if (!m_D3D)
@@ -45,7 +47,8 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 
 	// 위치설정
 	m_Camera->SetPosition(0.0f, 0.0f, -10.0f);
-
+	m_Camera->Render();
+	m_Camera->GetViewMatrix(baseViewMatrix);
 
 	/*
 	//모델 생성
@@ -122,11 +125,32 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
+	m_Text = new TextClass;
+	if (!m_Text)
+	{
+		return false;
+	}
+
+	//텍스트 오브젝트 생성
+	result = m_Text->Initialize(m_D3D->GetDevice(), m_D3D->GetDeviceContext(), hwnd, screenWidth, screenHeight, baseViewMatrix);
+	if (!result)
+	{
+		MessageBox(hwnd, L"텍스트 오브젝트 생성 실패.", L"Error", MB_OK);
+		return false;
+	}
+
 	return true;
 }
 
 void GraphicsClass::Shutdown()
 {
+	if (m_Text)
+	{
+		m_Text->Shutdown();
+		delete m_Text;
+		m_Text = 0;
+	}
+
 	if (m_Bitmap)
 	{
 		m_Bitmap->Shutdown();
@@ -241,6 +265,9 @@ bool GraphicsClass::Render(float rotation)
 	//2D 랜더링 구간 (Z버퍼 Off)
 	m_D3D->TurnZBufferOff();
 
+	// Turn on the alpha blending before rendering the text.
+	m_D3D->TurnOnAlphaBlending();
+
 	result = m_Bitmap->Render(m_D3D->GetDeviceContext(), 256, 128);
 	if (!result)
 	{
@@ -252,6 +279,14 @@ bool GraphicsClass::Render(float rotation)
 	{
 		return false;
 	}
+
+	result = m_Text->Render(m_D3D->GetDeviceContext(), worldMatrix, orthoMatrix);
+	if (!result)
+	{
+		return false;
+	}
+	// Turn off alpha blending after rendering the text.
+	m_D3D->TurnOffAlphaBlending();
 
 	m_D3D->TurnZBufferOn();//Z버퍼 온
 
